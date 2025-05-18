@@ -1,0 +1,121 @@
+/*client\src\styles\CategoryMenu.module.css*/*
+.menuContainer {
+  display: flex;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  direction: rtl;
+  min-height: 400px;
+}
+
+.mainCategories {
+  width: 130px;
+  border-left: 1px solid #eee;
+  background: #f8f8f8;
+  flex-shrink: 0;
+  margin-top: 30px;
+  font-weight: 500;
+}
+
+.mainCategory {
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.95rem;
+}
+
+.mainCategoryName {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.mainCategoryName:hover,
+.mainCategory.active .mainCategoryName {
+  background: #fff;
+  color: #007bff;
+}
+
+.subCategoriesWrapper {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.subCategoriesContainer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(200px, 1fr);
+  gap: 24px;
+  width: fit-content;
+  min-width: 100%;
+}
+
+.subCategoryGroup {
+  padding-left: 15px;
+  border-left: 1px solid #eee;
+}
+
+.subCategoryGroup:last-child {
+  border-left: none;
+}
+
+.subCategoryTitle {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #eee;
+  white-space: nowrap;
+}
+
+.subsubCategories {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subsubCategory {
+  padding: 4px 0;
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.subsubCategory:hover {
+  color: #007bff;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+  .menuContainer {
+    flex-direction: column;
+    min-height: unset;
+  }
+
+  .mainCategories {
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .subCategoriesContainer {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+  }
+
+  .subCategoryGroup {
+    padding-left: 0;
+    border-left: none;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+
+  .subCategoryGroup:last-child {
+    border-bottom: none;
+  }
+}
+  

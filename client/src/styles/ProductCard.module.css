@@ -1,0 +1,560 @@
+/*client\src\styles\ProductCard.module.css*/
+.card {
+  display: flex;
+  flex-direction: row-reverse; /* תמונה מימין */
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  align-items: flex-start;
+  direction: ltr;  
+}
+
+.imageWrapper {
+  width: 220px;
+  height: 220px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: 40px;
+}
+
+.mainImage {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+}
+
+.imageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 270px;
+  flex-shrink: 0;
+}
+
+.thumbnailList {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  justify-content: right;
+  margin-right: 15px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  object-fit: contain;
+  margin-top: 15px;
+
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  text-align: right;
+  min-height: 330px; /* לדוגמה – תוכל לשחק עם הערך */
+  justify-content: space-between; /* דוחף את שורת הכפתורים לתחתית */
+}
+
+.brandLogo {
+  max-height: 50px;
+  max-width: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.productLink {
+  text-decoration: none; /* ❌ בלי קו תחתון */
+  color: inherit;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  height: 48px;       /* שתי שורות */
+  line-height: 1.2em;
+  overflow: hidden;
+}
+
+.shortDescription {
+  height: 8em; /* בערך 4.5–5 שורות */
+  overflow: hidden;
+  position: relative;
+  line-height: 1.45em;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.shortDescription::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2em;
+  width: 100%;
+  background: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
+}
+.meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.priceBox {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.price {
+  font-size: 22px;
+  color: #0044cc;
+  font-weight: bold;
+}
+
+.priceInstead {
+  font-size: 14px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  min-height: 40px;
+}
+
+.quantitySelect {
+  width: 60px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.addToCart {
+  width: 120px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0 16px;
+  flex-shrink: 0;
+}
+
+.detailsButton {
+  width: 50px;
+  height: 32px;
+  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4285f4;
+  color: #4285f4;
+  background: white;
+  border-radius: 4px;
+  text-decoration: none;
+  padding: 0 16px;
+  flex-shrink: 0;
+}
+
+.review {
+  width: 110px;
+  margin-top: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  text-align: right;
+}
+
+.metaLine{
+  font-size: 12px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .actions {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .addToCart,
+  .detailsButton {
+    width: calc(50% - 2px);
+  }
+}
+
+.addToCartButton {
+  width: 120px;
+  height: 36px;
+  cursor: pointer;
+  object-fit: contain;
+  transition: opacity 0.2s;
+}
+
+.addToCartButton:hover {
+  opacity: 0.9;
+}
+
+/* סגנון מיוחד לכרטיסי מוצר בדף הבית */
+.homeSaleCard {
+  display: flex;
+  flex-direction: column; /* שינוי לסידור אנכי */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px;
+  gap: 0px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 0px;
+  position: relative;
+  width: 350px; /* הגבלת רוחב מקסימלי */
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.homeSaleCard .imageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0; /* ביטול margin */
+  margin-top: 0; /* ביטול margin-top ספציפי */
+}
+
+.homeSaleCard .imageWrapper {
+  width: 350px;
+  height: 330px;
+  margin-top: 40px;
+  }
+
+.homeSaleCard .mainImage {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+}
+ 
+.homeSaleCard .thumbnailList { 
+  display: none;
+}
+
+
+.homeSaleCard .flachContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.homeSaleCard .brandLogo {
+  height: 25px;
+  max-width: 100px;
+  object-fit: contain;
+  margin: 0 10px 0; /* רק מרווח בצדדים */
+  padding: 0; /* ביטול padding אם קיים */
+  display: block;
+  justify-content: flex-end;
+  margin-right: 2px;
+  margin-top: 5px;
+}
+
+.homeSaleCard .name {
+  font-size: 18px;
+  font-weight: bold;
+  overflow: hidden;
+  margin-right: 5px;
+  margin-top: 8px; 
+}
+
+.homeSaleCard .shortDescription {
+  font-size: 13px;
+  margin-right: 5px;
+  height: 100px;
+}
+
+.homeSaleCard .priceBox {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 5px 0;
+  align-self: flex-start; /* יישור לימין במיכל flex */
+  margin-right: 10px;
+}
+
+
+.homeSaleCard .price {
+  font-size: 22px;
+  color: #0044cc;
+  font-weight: bold;
+}
+
+.homeSaleCard .priceInstead {
+  font-size: 16px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.homeSaleCard .actions {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 5px;
+}
+
+.homeSaleCard .quantitySelect {
+  width: 55px;
+  height: 40px;
+  font-size: 14px;
+  padding: 0 2px;
+}
+
+.homeSaleCard .addToCartButton {
+  width: auto;
+  height: 40px;
+}
+
+.homeSaleCard .detailsButton {
+  font-size: 14px;
+  height: 40px;
+  width: 80px;
+  padding: 0 3px;
+}
+
+.homeSaleCard .metaLine{
+  display: none;
+}
+
+.review {
+  display: none;
+}
+
+/* סגנונות בסיסיים לפלאח */
+.flachContainer {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 100 !important; /* העלאת ה-z-index */
+  pointer-events: none;
+}
+
+.flachImage {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+/* הגדרות ספציפיות לכרטיס בדף מוצרים */
+:global(.category-product-card) {
+  position: relative !important; /* חשוב! */
+}
+
+:global(.category-product-card .flachContainer) {
+  position: absolute !important;
+  top: 5px !important;
+  right: 5px !important;
+  z-index: 100 !important;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+}
+
+.imageWrapper {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageWrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* סגנון מיוחד לכרטיסי מוצר בדף Sales */
+.salesPageCard {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 3px;
+  align-items: flex-start;
+  max-width: none;
+  min-height: 310px;
+  position: relative;
+}
+
+.salesPageCard .imageSection {
+  width: 225px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 2px;
+  margin-right: 6px;
+  margin-top: 40px;
+}
+
+.salesPageCard .imageWrapper {
+  width: 225px;
+  height: 225px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.salesPageCard .mainImage {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.salesPageCard .thumbnailList {
+  margin-top: 2px;
+  gap: 3px;
+  justify-content: center;
+}
+
+.salesPageCard .thumbnail {
+  width: 25px;
+  height: 25px;
+  margin-top: 3px;
+}
+
+.salesPageCard .details {
+  flex: 1;
+  min-height: auto;
+  gap: 6px;
+  padding-right: 8px;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.salesPageCard .name {
+  font-size: 16px;
+  line-height: 1.2;
+  height: auto;
+  max-height: 48px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.salesPageCard .shortDescription {
+  font-size: 12px;
+  height: 10em;
+  margin-bottom: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.salesPageCard .price {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.salesPageCard .priceInstead {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.salesPageCard .actions {
+  gap: 8px;
+  min-height: 28px;
+  margin-top: 0px;
+}
+
+.salesPageCard .quantitySelect {
+  width: 45px;
+  height: 26px;
+  font-size: 12px;
+  padding: 0 2px;
+}
+
+.salesPageCard .addToCartButton {
+  width: 65px;
+  height: 28px;
+}
+
+.salesPageCard .detailsButton {
+  font-size: 11px;
+  height: 24px;
+  padding: 0 3px;
+  min-width: 40px;
+  max-width: 50px;
+}
+
+.salesPageCard .review {
+  width: 60px;
+  display: none;
+}
+
+.salesPageCard .metaLine {
+  font-size: 9px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: none;
+}
+
+.salesPageCard .brandLogo {
+  height: 25px;
+  max-width: 70px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+/* שאר הסגנונות הקיימים נשארים */
+
+.homeSaleCard .productLink {
+  margin: 0; /* ביטול מרווחים מהלינק שעוטף את השם */
+  padding: 0;
+  display: block;
+}
+

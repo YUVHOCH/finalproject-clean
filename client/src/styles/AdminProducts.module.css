@@ -1,0 +1,321 @@
+/* src/styles/AdminProducts.module.css */
+
+.container {
+    padding: 24px 40px;
+    max-width: 100%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .deleteButton,
+  .uploadButton, .UploadExcelButton {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+  }
+  
+  .deleteButton {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  
+  .deleteButton:hover {
+    background-color: #cc0000;
+  }
+  
+  .uploadButton {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .uploadButton:hover {
+    background-color: #388e3c;
+  }
+
+  .UploadExcelButton {
+    background-color: #5b31bd;
+    color: white;
+  }
+  
+  .UploadExcelButton:hover {
+    background-color: #5b31bd;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  thead {
+    background-color: #f4f4f4;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 12px;
+  }
+  
+  th {
+    background-color: #eee;
+    font-weight: bold;
+  }
+  
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .editBtn,
+  .deleteBtn {
+    padding: 3px 5px;
+    font-size: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .editBtn {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .editBtn:hover {
+    background-color: #0d8ae2;
+  }
+  
+  .deleteBtn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .deleteBtn:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* עורך תוכן */
+  .editorContainer {
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 16px;
+    }
+  
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+  
+    th {
+      display: none;
+    }
+  
+    td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+      font-size: 13px;
+    }
+  
+    td::before {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 45%;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #999;
+      content: attr(data-label);
+    }
+  
+    .actionButtons {
+      justify-content: center;
+      margin-top: 8px;
+    }
+  }
+
+  .topActions {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* רווח בין הכפתור לשדה החיפוש */
+    margin-bottom: 16px;
+  }
+  
+  .categorySearchInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 50%;
+  }
+  
+  .productSearchInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 36px;
+  }
+  
+  .categorySearchInput:focus,
+  .productSearchInput:focus {
+    border-color: #2196f3;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+  }
+  
+  .categoryFilter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 300px;
+  }
+  
+  .categorySelect {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    background-color: white;
+  }
+  
+  .categorySelect:focus {
+    border-color: #2196f3;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+  }
+  
+  /* Style the react-select control */
+  :global(.react-select__control) {
+    border-radius: 8px !important;
+    border: 1px solid #ccc !important;
+    min-height: 38px !important;
+    box-shadow: none !important;
+  }
+  
+  :global(.react-select__control:hover) {
+    border-color: #2196f3 !important;
+  }
+  
+  :global(.react-select__control--is-focused) {
+    border-color: #2196f3 !important;
+    box-shadow: 0 0 0 1px #2196f3 !important;
+  }
+  
+  :global(.react-select__menu) {
+    z-index: 100;
+  }
+
+  .editableField {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .editableField:focus {
+    border-color: #2196f3;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+  }
+
+  .editableField[type="number"] {
+    width: 80px;
+  }
+
+  /* Specific width for price fields */
+  input[type="number"].editableField.priceField {
+    width: 56px; /* Reduced by 30% from 80px */
+    text-align: right;
+  }
+
+  /* Add specific width for position field */
+  input[type="number"].editableField.positionField {
+    width: 15px;
+    text-align: center;
+  }
+
+  .checkbox {
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    margin: 0;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .iconButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .iconButton:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .iconButton svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Hide number input spinners */
+  .editableField[type="number"]::-webkit-inner-spin-button,
+  .editableField[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .editableField[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+
+  .limitSelect {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 120px;
+    direction: rtl;
+  }
+  

@@ -1,0 +1,113 @@
+.brandsTable {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+}
+
+.tableHeader {
+  background-color: #f3f4f6;
+}
+
+.tableHeaderCell {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.tableCell {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+
+.positionCell {
+  width: 60px;
+  direction: ltr;
+  text-align: left;
+}
+
+.orderCell {
+  width: 80px;
+}
+
+.brandNameCell {
+  width: 120px;
+  text-align: center;
+}
+
+.brandImage {
+  width: 50px;
+  height: auto;
+  margin: 5px auto;
+  display: block;
+}
+
+.previewCell {
+  max-width: 120px;
+  text-align: right;
+}
+
+.previewTitle {
+  font-size: 0.8em;
+  display: block;
+  text-align: right;
+  margin-bottom: 4px;
+}
+
+.previewDescription {
+  font-size: 0.75em;
+  color: #666;
+  text-align: right;
+}
+
+.actionCell {
+  text-align: center;
+}
+
+.orderButton {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.orderButtonEnabled {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.orderButtonEnabled:hover {
+  background-color: #2563eb;
+}
+
+.orderButtonDisabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  text-align: right;
+}
+
+.textareaField {
+  width: 100%;
+  padding: 0.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  text-align: right;
+  rows: 6;
+}
+
+.saveButton {
+  background-color: #22c55e;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.saveButton:hover {
+  background-color: #16a34a;
+} 

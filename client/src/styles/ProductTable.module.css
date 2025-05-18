@@ -1,0 +1,52 @@
+.ProductTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .ProductTable th {
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+  }
+  
+  .ProductTable td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+  }
+  
+  .ProductTable img {
+    width: 60px;
+    height: auto;
+    border-radius: 6px;
+  }
+  
+  .ProductTable tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .editBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .editBtn:hover {
+    background-color: #0056b3;
+  }
+  

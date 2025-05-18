@@ -1,0 +1,10 @@
+# Server dependencies
+/node_modules
+
+# Logs
+logs
+*.log
+
+# Environment
+.env
+.env.local

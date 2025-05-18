@@ -1,0 +1,104 @@
+/*client\src\styles\Login.module.css*/
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to bottom, #f8fafa, #ffffff);
+    min-height: 100vh;
+    padding-top: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .titles {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  
+  .titles h1 {
+    color: #0077cc;
+    text-decoration: underline;
+    font-size: 32px;
+    margin-bottom: 5px;
+  }
+  
+  .titles p {
+    font-size: 18px;
+    color: #313030;
+  }
+  
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background-color: #fefefe;
+    width: 500px;
+    height: 250px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+  }
+  
+  .formRow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px; /* רווח קטן אבל ברור */
+  }
+  
+  .formRow label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    min-width: 80px;  /* 🔽 במקום 120px */
+    text-align: right;
+  }
+  
+  .inputField {
+    font-size: 22px;
+    width: 350px;
+    height: 35px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+  }
+  
+  .inputField:focus {
+    outline: none;
+    border: 1px solid #0077cc;
+    background-color: #ffffff;
+  }
+  
+  .button {
+    width: 200px;
+    height: 45px;
+    background: linear-gradient(135deg, #309dd0, #3c9dca);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+    margin-top: 30px;
+    margin-right: 100px;
+
+  }
+  
+  .button:hover {
+    background: linear-gradient(135deg, #008c9e, #006f79);
+    transform: scale(1.05);
+  }
+
+  .inputField::placeholder {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    color: #999;
+  }
+  

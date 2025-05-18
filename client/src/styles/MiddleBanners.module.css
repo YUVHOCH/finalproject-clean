@@ -1,0 +1,67 @@
+.middleBannersContainer {
+  width: 100%;
+  max-width: 1680px;
+  margin: 2rem auto;
+  padding: 20px 1rem;
+  background-color: #fcf9f9;
+}
+
+.middleBannersContainer h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 2.5rem;
+}
+
+
+.bannersGrid {
+  display: grid;
+  grid-template-areas:
+    "banner1 banner2 banner3"
+    "banner1 banner4 banner4";
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.banner1 {
+  grid-area: banner1;
+  height: 100%;
+}
+
+.banner2 {
+  grid-area: banner2;
+}
+
+.banner3 {
+  grid-area: banner3;
+}
+
+.banner4 {
+  grid-area: banner4;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.bannerImage:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bannersGrid {
+    grid-template-areas:
+      "banner1"
+      "banner2"
+      "banner3"
+      "banner4";
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+  }
+} 

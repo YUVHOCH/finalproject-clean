@@ -1,0 +1,86 @@
+.filterSidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  align-self: flex-start;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+  margin-right: 0;
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 8px;
+}
+
+.filterHeader h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #333;
+}
+
+.clearButton {
+  padding: 5px 6px;
+  font-size: 0.85rem;
+  color: #666;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 100px;
+  max-width: 70px;
+  margin-right: 12px;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+
+.clearButton:hover {
+  color: #e74c3c;
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.05);
+}
+
+.filterGroup {
+  margin-bottom: 24px;
+}
+
+.filterGroup h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  color: #333;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkboxItem input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.checkboxItem span {
+  font-family: "Segoe UI", sans-serif;
+} 

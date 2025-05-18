@@ -1,0 +1,257 @@
+/*client\src\styles\ProductsPage.module.css*/
+/* 🧱 עמוד שלם */
+.pageWrapper {
+  max-width: 100%;
+  padding: 0 40px;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🧱 תוכן פנימי: פילטרים מימין, מוצרים משמאל */
+.contentWrapper {
+  display: flex;
+  gap: 32px;
+  width: 92%;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  flex: 1;
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+/* 🎚️ סיידבר פילטרים */
+.sidebarFilters {
+  width: 250px;
+  flex-shrink: 0;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  align-self: flex-start;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.sidebarFilters h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+.sidebarFilters h4 {
+  font-size: 16px;
+  margin: 16px 0 8px;
+}
+
+.sidebarFilters label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* 📦 אזור המוצרים */
+.productsSection {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 🏷️ כותרת קטגוריה */
+.categoryTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+  margin-top: 40px;
+  margin-right: 15px;
+}
+
+/* 🗺️ ברדקראמבס */
+.caterorylist {
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #666;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 📦 גריד מוצרים */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* 🚫 הודעת שגיאה */
+.error {
+  color: #ff4444;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+/* 📭 אין מוצרים */
+.noProducts {
+  text-align: center;
+  padding: 40px;
+  grid-column: 1 / -1;
+  font-size: 1.2em;
+  color: #666;
+}
+
+/* 🔄 ספינר טעינה */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 📱 רספונסיביות */
+@media (max-width: 1200px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+
+  .sidebarFilters {
+    width: 100%;
+    position: static;
+  }
+
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  color: #333;
+  padding: 0 8px;
+  direction: rtl;
+}
+
+.breadcrumbItem {
+  color: #333;
+}
+
+.breadcrumbSeparator {
+  margin: 0 6px;
+  color: #999;
+}
+
+.breadcrumbCurrent {
+  font-weight: bold;
+  color: #000;
+}
+
+.categoryProductCard .flachContainer {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
+}
+
+.categoryProductCard .flachImage {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.filterGroup {
+  margin-bottom: 24px;
+  columns: flex;
+  padding: 15px;
+}
+
+.filterGroup h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+  color: #444;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.checkboxItem input[type="checkbox"] {
+  transform: scale(1.1);
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 14.5px  !important;;
+  color: #333232;
+  font-weight: normal;              /* 👈 מונע בולד */
+  font-family: "Segoe UI", sans-serif; /* 👈 דוגמה לפונט נקי וקריא */
+}
+
+.categoryTitle,
+.caterorylist {
+  direction: rtl;
+  text-align: right;
+}
+
+.categoryDescription {
+  max-width: 100%;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 1.08rem;
+  color: #444;
+  line-height: 1.7;
+  background: #fbfbfb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  direction: rtl;
+  text-align: right;
+}
+
+

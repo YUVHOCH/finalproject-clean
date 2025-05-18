@@ -1,0 +1,115 @@
+.hero {
+    margin-top: 0;
+    padding-top: 0;
+    background-color: transparent; /* לוודא שאין רקע לבן בטעות */
+    margin-top: 5px;
+    margin-bottom: 0;
+    position: relative;
+  }
+  
+  .bannerContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: #333;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+  }
+  
+  .navButton:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .prevButton {
+    left: 20px;
+  }
+  
+  .nextButton {
+    right: 20px;
+  }
+  
+  .dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .activeDot {
+    background-color: white;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .navButton {
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+    
+    .prevButton {
+      left: 10px;
+    }
+    
+    .nextButton {
+      right: 10px;
+    }
+    
+    .dots {
+      bottom: 10px;
+    }
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  

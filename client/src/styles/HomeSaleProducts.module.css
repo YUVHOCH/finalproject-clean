@@ -1,0 +1,52 @@
+.homeSaleProductsContainer {
+  width: 90%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #f8f8f8;
+
+}
+
+.saleHomeTitle {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 5px;
+}
+
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* מדיה קוורי למסכים בינוניים */
+@media (max-width: 1200px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+}
+
+/* מדיה קוורי לטאבלט */
+@media (max-width: 768px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 14px;
+  }
+} 
+
+/* מדיה קוורי למובייל */
+@media (max-width: 480px) {
+  .productsGrid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 10px;
+  }}

@@ -1,0 +1,80 @@
+/* מיכל ראשי */
+.pageContainer {
+  max-width: 100%;  /* מגביל את הרוחב המקסימלי */
+  margin: 0 auto;     /* מרכז את התוכן */
+  padding: 0 40px;    /* מרווח מהצדדים */
+  box-sizing: border-box; /* חשוב! מונע גלישה */
+  direction: rtl;
+  overflow-x: hidden; /* מונע גלישה אופקית */
+}
+
+/* מיכל גריד מוצרים */
+.container_productgrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 5px;  /* רווח אנכי 5px, רווח אופקי 10px */
+  margin: 20px auto;
+  background-color: #f8f8f8;
+
+}
+
+.saleProductCard {
+  width: 95%;  /* הגדלת רוחב הקוביה */
+  gap: 0;      /* הקטנת הרווח הפנימי */
+  margin: 0 auto; /* מרכוז הקוביה */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* אופציונלי - אם תרצה להגדיל את התמונה בהתאמה */
+.saleProductCard .imageSection {
+  width: 180px;  /* הגדלת רוחב התמונה */
+}
+
+.saleProductCard .imageWrapper {
+  width: 170px;  /* הגדלת רוחב אזור התמונה */
+  height: 170px; /* הגדלת גובה אזור התמונה */
+}
+
+/* באנר */
+.bannerContainer {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  overflow: hidden;  /* מונע גלישה של התמונה */
+}
+
+.bannerContainer img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.title {
+  margin: 20px 0;
+  text-align: right;
+}
+/* טעינה */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

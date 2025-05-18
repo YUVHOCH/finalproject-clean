@@ -1,0 +1,99 @@
+/* Editproducts.module.css */
+
+.container {
+    max-width: 70%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .button {
+    margin-top: 30px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* התאמה לעורכים של ReactQuill */
+  .ql-container {
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .ql-toolbar {
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .saveButton {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .saveButton:hover {
+    background-color: #0056b3;
+  }
+
+  .searchBar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 12px;
+  }
+  
+  .searchBar input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 240px; /* קצת יותר רחב */
+    max-width: 300px;
+    transition: border-color 0.2s ease;
+  }
+  
+  .searchBar input:focus {
+    border-color: #3b82f6; /* כחול יפה */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* טיפה זוהר */
+  }

@@ -1,0 +1,93 @@
+/* src\styles\Admin.module.css */
+/* ✨ עוטף את כל עמוד הניהול */
+.adminWrapper {
+  padding: 2rem;                    /* ריווח פנימי מכל הצדדים */
+  max-width: 1800px;               /* הגבלת רוחב מקסימלית למסכים רחבים */
+  margin: 0 auto;                  /* ממרכז את העמוד באמצע המסך */
+}
+
+/* 🏷️ כותרת עליונה של העמוד */
+.container h1 {
+  font-size: 2rem;                 /* גודל פונט גדול */
+  font-weight: bold;              /* פונט מודגש */
+  margin-bottom: 1.5rem;          /* ריווח מתחת לכותרת */
+  text-align: center;             /* ממרכז את הטקסט */
+}
+
+/* 🧭 מיכל הטאבים העליונים */
+.navTabs {
+  display: flex;                  /* מציג את הלשוניות בשורה */
+  justify-content: center;        /* ממרכז את כל הלשוניות */
+  gap: 40px;                      /* ריווח בין כל טאב */
+  margin-bottom: 2rem;           /* ריווח מתחת לטאבים */
+  flex-wrap: wrap;               /* מאפשר שבירה לשורה חדשה במסכים קטנים */
+}
+
+/* 🧷 עיצוב בסיסי לכל טאב (לינק) */
+.navTabs a {
+  width: 110px;               /* רוחב קבוע של כפתור */
+  text-align: center;         /* מרכז את הטקסט בכפתור */
+  padding: 0.5rem 1rem;           /* ריווח פנימי: למעלה/למטה ולצדדים */
+  border-radius: 8px;             /* פינות מעוגלות */
+  background-color: #eee;         /* רקע אפור בהיר ברירת מחדל */
+  text-decoration: none;          /* הסרת קו תחתון של לינק */
+  font-weight: 500;               /* טקסט מודגש קלות */
+  color: #333;                    /* צבע טקסט אפור כהה */
+  transition: background-color 0.3s; /* מעבר חלק של צבע רקע בזמן hover */
+}
+
+/* 🖱️ עיצוב כשעוברים עם העכבר על הטאב */
+.navTabs a:hover {
+  background-color: #ddd;         /* רקע מעט כהה יותר בהובר */
+}
+
+/* ✅ עיצוב טאב פעיל (טאב נבחר) */
+.activeTab {
+  background-color: #38bdf8;      /* רקע טורקיז בולט */
+  color: white;                   /* טקסט לבן */
+}
+
+/* 🧱 מיכל התוכן של כל טאב */
+.tabContent {
+  background-color: #f9f9f9;      /* רקע אפור-לבן נעים */
+  border-radius: 12px;            /* פינות מעוגלות */
+  padding: 2rem;                  /* ריווח פנימי */
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);  /* צל עדין */
+}
+
+@media (max-width: 768px) {
+  .navTabs {
+    flex-direction: column;       /* כל כפתור ירד לשורה נפרדת */
+    align-items: center;          /* מרכז את הכפתורים */
+    gap: 1rem;                    /* רווח אנכי בין הטאבים */
+  }
+
+  .navTabs a {
+    width: 90%;                   /* הכפתורים תופסים כמעט את כל רוחב המסך */
+    font-size: 1rem;              /* טקסט ברור וקריא במובייל */
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .adminWrapper {
+    padding: 1rem;
+  }
+
+  .tabContent {
+    padding: 1rem;
+  }
+}
+
+/* הוספה בסוף הקובץ */
+.iframe {
+  width: 100%;
+  height: 800px;
+  border: none;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+
+

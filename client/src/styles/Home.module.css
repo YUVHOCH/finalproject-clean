@@ -1,0 +1,136 @@
+.pageWrapper {
+  direction: rtl;
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff; /* רקע לבן כהה */
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.siteHeader {
+  background-color: #ffffff; /* לבן כהה */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchStrip {
+  background-color: #f2f2f2; /* אפור בהיר */
+}
+.featuredCategories {
+  padding: 1rem 0;
+  width: 100%;
+  max-width: 1800px;
+  background-color: #fdfafa;
+  margin: 10px auto;
+}
+
+.featuredTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #4b4c4d;
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  padding: 2.5rem;
+}
+
+.categoryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.categoryCard:hover {
+  transform: translateY(-5px);
+}
+
+.categoryImageWrapper {
+  width: 110px;
+  height: 100px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoryImage {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+}
+
+.categoryName {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 1.25rem;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .categoriesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .categoriesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .categoriesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.mainContent {
+  padding: 0px;
+  margin-top: -1px;
+}
+
+.limitRow {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px 0;
+  gap: 10px;
+  margin-right: 40px;
+}
+
+.limitLabel {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.limitInput {
+  width: 35px;        /* 🔽 הצר רוחב */
+  height: 24px;       /* 🔽 הקטן גובה */
+  padding: 2px 6px;   /* 🔧 שפר מרווח פנימי */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center; /* 🔄 מיושר יפה במרכז */
+  margin-top: 5px;
+}
+
+.yoursProducts{
+text-align: center;
+margin-top: 30px;
+margin-bottom: 30px;
+  }
+  

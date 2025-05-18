@@ -1,0 +1,233 @@
+/* ✅ עיצוב כללי */
+.cartWrapper {
+    padding-top: 10px;
+    direction: rtl;
+    margin-right: 40px;
+    margin-left: 40px;
+     margin-bottom: 24px;
+  }
+  
+  .cartTitle {
+    font-size: 36px;
+    margin-bottom: 0px;
+    margin-right: 190px;
+    margin-top: 30px;
+  }
+  
+  .cartContent {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    margin-right: 180px;
+    margin-left: 180px;
+  }
+  
+  /* ✅ טבלת מוצרים */
+  .productTable table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+  
+  .productTable th {
+    background-color: #3A864F;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    padding: 12px 8px;
+    border-bottom: 2px solid #ccc;
+    border-right: none;
+    border-left: none;
+  }
+  
+  .productTable td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #ddd;
+    border-right: none;
+    border-left: none;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  /* ✅ שורות מתחלפות */
+  .tableRow:nth-child(even) {
+    background-color: white;
+  }
+  .tableRow:nth-child(odd) {
+    background-color: white;
+  }
+  
+  /* ✅ תמונה מימין */
+  .imageCell {
+    width: 120px;
+    text-align: right;
+  }
+  .productImage {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  
+  /* ✅ תא תיאור */
+  .descriptionCell {
+    text-align: right;
+    padding-right: 8px;
+  }
+  .productName {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .sku {
+    font-size: 13px;
+    color: #777;
+  }
+  
+  /* ✅ מחיקה */
+  .removeCell {
+    width: 40px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .removeButton {
+    background: none;
+    border: none;
+    font-size: 15px;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 130px;
+    margin-bottom: 30px;
+  }
+  
+  /* ✅ מחיר, כמות, סה"כ */
+  .priceCell,
+  .quantityCell,
+  .totalCell {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  /* ✅ עמודת סיכום עגלה */
+  .summaryBox {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  .summaryBox h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  .summaryLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .totalRow {
+    border-top: 1px solid #ccc;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  
+  /* ✅ קופון */
+  .couponBox {
+    margin-top: 20px;
+  }
+  .couponBox label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  .couponBox input {
+    width: 92%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #333232;
+    border-radius: 4px;
+  }
+  .couponBox button {
+    width: 40%;
+    padding: 10px;
+    background: #e7e9e8;
+    color: rgb(53, 51, 51);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+  
+  /* ✅ כפתורי תשלום */
+  .payButton,
+  .registeredPayButton {
+    width: 100%;
+    padding: 14px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .payButton {
+    background-color: #2a874c;
+    color: white;
+  }
+  
+  .registeredPayButton {
+    background-color: #0080cc;
+    color: white;
+  }
+
+  .shippingPolicyLink {
+    display: inline-block;
+    margin-top: 0px;
+    padding: 8px 14px;
+    background-color: #f5f5f5;
+    color: #e34b4b;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    margin-right: 180px;
+    margin-bottom: 5px;
+
+  }
+  
+  .shippingPolicyLink:hover {
+    background-color: #e6e6e6;
+    color: #000;
+    border-color: #aaa;
+  }
+  
+  .arrow {
+    margin-right: 6px;
+    color: #999;
+    font-weight: bold;
+    color: #e41515;
+  }
+
+  .totalsSection {
+    background: #f4f4f4;
+    padding: 20px;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  .actionsSection {
+    background: #fff;
+    padding: 20px;
+  }

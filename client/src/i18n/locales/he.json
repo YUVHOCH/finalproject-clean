@@ -1,0 +1,90 @@
+{
+  "header": {
+    "home": "דף הבית",
+    "products": "מוצרים",
+    "brands": "מותגים",
+    "jobs": "דרושים",
+    "articles": "מאמרים",
+    "sales": "מבצעים",
+    "contact": "צור קשר",
+    "login": "התחברות",
+    "register": "הרשמה",
+    "logout": "התנתקות",
+    "admin": "ניהול",
+    "cart": "עגלת קניות",
+    "searchPlaceholder": "חיפוש מוצר...",
+    "hello": "שלום",
+    "guest": "אורח",
+    "stores": "סניפים"
+  },
+  "register": {
+    "title": "הרשמה",
+    "subtitle": "אנא מלאו את הפרטים הבאים ליצירת חשבון:",
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "phone": "מספר טלפון",
+    "email": "אימייל",
+    "birthDate": "תאריך לידה",
+    "gender": "מין:",
+    "male": "זכר",
+    "female": "נקבה",
+    "username": "שם משתמש",
+    "password": "סיסמה",
+    "subscribe": "מעוניין לקבל הצעות ומבצעים במייל",
+    "terms": "אני מסכים לתנאי השימוש",
+    "submit":"שליחה",
+    "requiredField": "שדה חובה",
+    "errors": {
+    "invalidPhone": "מספר טלפון לא תקין. השתמש בפורמט XXX-XXXXXXX.",
+    "missingPhone": "יש להזין מספר טלפון.",
+    "invalidName": "יש להזין שם תקין (2–12 אותיות באנגלית).",
+    "invalidPassword": "הסיסמה חייבת לכלול לפחות 6 תווים, אות ומספר.",
+    "acceptTerms": "יש לאשר את תנאי השימוש לפני ההרשמה.",
+    "passwordHint": ""
+    }
+  },
+
+  "sidebar": {
+    "title": "קטגוריות",
+    "clear": "נקה סינון",
+    "Garden Tools": "כלי גינון",
+    "Lawnmowers": "מכסחות דשא",
+    "Chainsaws": "מסורים",
+    "Blowers": "מפוחים",
+    "Trimmers": "חרמשים",
+    "Irrigation": "השקיה",
+    "Water Controls": "בקרי מים",
+    "Real Hoses": "צינורות גלגלת",
+    "Flexible Hoses": "צינורות גמישים",
+    "Fertilising": "דישון",
+    "Liquid": "נוזלי",
+    "Solid": "מוצק",
+    "Pest Control": "הדברת מזיקים",
+    "Organic": "אורגני",
+    "Mineral": "מינרלי"
+  },
+
+"login": {
+  "title": "התחברות",
+  "subtitle": "כבר יש לך חשבון? התחבר כאן:",
+  "username": "שם משתמש",
+  "password": "סיסמה",
+  "submit": "שליחה"
+},
+"searchBar": {
+  "placeholder": "חפש מוצרים...",
+  "limitItems": "מספר מוצרים לתצוגה",
+  "allCategories": "הכל"
+},
+
+
+"productCard": {
+  "price": "מחיר",
+  "instead": "במקום",
+  "sku": "מק״ט",
+  "category": "קטגוריה",
+  "addToCart": "הוסף לעגלה",
+  "reviewsAlt": "חוות דעת של לקוחות"
+}
+}
+
