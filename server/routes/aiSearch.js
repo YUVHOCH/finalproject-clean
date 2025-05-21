@@ -9,56 +9,120 @@ const openai = new OpenAI({
 });
 
 router.post('/', async (req, res) => {
-  console.log('=== Starting Enhanced AI Search (Safe Mode) ===');
   try {
     const { query } = req.body;
-    console.log('Received query:', query);
-
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: `אתה עוזר ללקוח למצוא מוצרים מתאימים בחנות גינון.
-נתח את הבקשה והחזר עד 10 מילות מפתח רלוונטיות לחיפוש (מותגים, סוגים, תיאורים, תקלות וכו').
-החזר רק את המילים, מופרדות בפסיקים. בלי הסברים, בלי JSON.
-אם יש תקציב, כלול מילים שמתאימות (למשל "זול", "מתחת ל־1000").`
-        },
-        {
-          role: "user",
-          content: query
-        }
+    console.log('=== Starting AI Search ===');
+    
+    // שלב 1: חיפוש בסיסי מהיר
+    const basicSearchResults = await Product.find({
+      active: true,
+      $or: [
+        { productName: { $regex: query, $options: 'i' } },
+        { category: { $regex: query, $options: 'i' } },
+        { subcategory: { $regex: query, $options: 'i' } }
       ]
+    }).lean();  // משתמשים ב-lean() לביצועים טובים יותר
+
+    // שלב 2: יצירת embedding במקביל לחיפוש הבסיסי
+    const embeddingPromise = openai.embeddings.create({
+      model: "text-embedding-ada-002",
+      input: query
     });
 
-    const keywordString = completion.choices[0].message.content;
-    const searchTerms = keywordString
-      .split(',')
-      .map(term => term.trim())
-      .filter(term => term.length > 1);
+    // שלב 3: חיפוש סמנטי
+    const [embeddingResponse] = await Promise.all([embeddingPromise]);
+    const searchVector = embeddingResponse.data[0].embedding;
 
-    console.log('AI keywords:', searchTerms);
+    // חיפוש מוצרים עם embeddings תקינים
+    const semanticResults = await Product.aggregate([
+      {
+        $match: {
+          active: true,
+          shortEmb: { $exists: true, $ne: null },
+          $expr: { $eq: [{ $size: "$shortEmb" }, searchVector.length] }
+        }
+      },
+      {
+        $addFields: {
+          similarity: {
+            $reduce: {
+              input: { $range: [0, { $size: "$shortEmb" }] },
+              initialValue: 0,
+              in: {
+                $add: [
+                  "$$value",
+                  {
+                    $multiply: [
+                      { $arrayElemAt: ["$shortEmb", "$$this"] },
+                      { $arrayElemAt: [searchVector, "$$this"] }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        $match: {
+          similarity: { $gt: 0.7 }  // סף דמיון מינימלי
+        }
+      },
+      {
+        $sort: { similarity: -1 }
+      },
+      {
+        $limit: 20
+      }
+    ]);
 
-    // בניית בקשת חיפוש
-    const regexes = searchTerms.map(term => new RegExp(term, 'i'));
-    const products = await Product.find({
-  $or: searchTerms.map(term => ({
-    $or: [
-      { productName: { $regex: new RegExp(term, 'i') } },
-      { description: { $regex: new RegExp(term, 'i') } },
-      { shortDescription: { $regex: new RegExp(term, 'i') } },
-      { longDescription: { $regex: new RegExp(term, 'i') } }
-    ]
-  }))
-});
+    // שלב 4: מיזוג התוצאות
+    const allProducts = [...new Set([...basicSearchResults, ...semanticResults])];
+    
+    // שלב 5: דירוג סופי
+    const finalResults = allProducts
+      .map(product => {
+        let score = 0;
+        
+        // ציון מהחיפוש הבסיסי
+        if (basicSearchResults.some(p => p._id.equals(product._id))) {
+          score += 100;
+        }
+
+        // ציון מהחיפוש הסמנטי
+        const semanticResult = semanticResults.find(p => p._id.equals(product._id));
+        if (semanticResult?.similarity) {
+          score += semanticResult.similarity * 100;
+        }
+
+        // בונוס למוצרים שמכילים את מילות החיפוש בשם
+        if (product.productName?.toLowerCase().includes(query.toLowerCase())) {
+          score += 50;
+        }
+
+        return {
+          ...product,
+          price: product.price || 0,  // טיפול במחיר null
+          relevanceScore: score
+        };
+      })
+      .filter(product => 
+        // סינון תוצאות לא תקינות
+        product.productName && 
+        typeof product.price === 'number' && 
+        !isNaN(product.price)
+      )
+      .sort((a, b) => b.relevanceScore - a.relevanceScore)
+      .slice(0, 20);  // מגביל ל-20 תוצאות
+
     return res.json({
       success: true,
-      products,
-      keywords: searchTerms
+      products: finalResults,
+      totalFound: finalResults.length
     });
 
   } catch (error) {
-    console.error('❌ AI search error:', error);
+    console.error('AI search error:', error);
     return res.status(500).json({
       error: 'AI search failed',
       message: error.message

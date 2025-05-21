@@ -11,6 +11,8 @@ const AISearchModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!query.trim()) return;
+
     setIsLoading(true);
     setError(null);
     setResults(null);
@@ -21,14 +23,21 @@ const AISearchModal = ({ isOpen, onClose }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ 
+          query: query.trim()
+        }),
       });
       
       if (!response.ok) {
-        throw new Error(`Server responded with status ${response.status}`);
+        throw new Error(`שגיאה בחיפוש: ${response.status}`);
       }
 
       const data = await response.json();
+      if (!data.products?.length) {
+        setError('לא נמצאו תוצאות מתאימות לחיפוש שלך');
+        return;
+      }
+      
       setResults(data);
     } catch (error) {
       console.error('Error during AI search:', error);
@@ -90,41 +99,70 @@ const AISearchModal = ({ isOpen, onClose }) => {
           <div className={styles.results}>
             {results.products.length === 0 ? (
               <div className={styles.noResults}>
-                לא נמצאו תוצאות לחיפוש שלך
+                <p>לא נמצאו תוצאות מתאימות לחיפוש שלך</p>
+                <p className={styles.searchTips}>
+                  ניסינו לחפש:
+                  {results.analysis && (
+                    <ul>
+                      <li>בקטגוריה: {results.analysis.mainCategory}</li>
+                      <li>סוג מוצר: {results.analysis.productType}</li>
+                      <li>עם הדרישות: {results.analysis.requirements?.join(', ')}</li>
+                    </ul>
+                  )}
+                  <br />
+                  טיפים לחיפוש:
+                  <ul>
+                    <li>נסה לתאר את המוצר בצורה כללית יותר</li>
+                    <li>ציין את השימוש העיקרי של המוצר</li>
+                    <li>נסה לחפש לפי קטגוריה</li>
+                  </ul>
+                </p>
               </div>
             ) : (
-              results.products.map((product, index) => (
-                <Link 
-                  to={`/product/${product.sku}`} 
-                  key={index} 
-                  className={styles.resultItem}
-                  onClick={onClose}
-                >
-                  <div className={styles.imageContainer}>
-                    <img 
-                      src={`/images/${product.sku}.jpg`}
-                      alt={stripHtml(product.productName)}
-                      className={styles.productImage}
-                      onError={handleImageError}
-                    />
-                  </div>
-                  <div className={styles.productInfo}>
-                    <h3>{stripHtml(product.productName)}</h3>
-                    {product.brand && (
-                      <div className={styles.brand}>{stripHtml(product.brand)}</div>
-                    )}
-                    <p className={styles.description}>
-                      {stripHtml(product.shortDescription || '')}
-                    </p>
-                    <p className={styles.price}>
-                      ₪{Number(product.price).toLocaleString('he-IL', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                      })}
-                    </p>
-                  </div>
-                </Link>
-              ))
+              <>
+                <div className={styles.resultsHeader}>
+                  נמצאו {results.products.length} תוצאות עבור "{results.query}"
+                </div>
+                {results.products.map((product, index) => (
+                  <Link 
+                    to={`/product/${product.sku}`} 
+                    key={index} 
+                    className={styles.resultItem}
+                    onClick={onClose}
+                  >
+                    <div className={styles.imageContainer}>
+                      <img 
+                        src={`/images/${product.sku}.jpg`}
+                        alt={product.productName || 'מוצר'}
+                        className={styles.productImage}
+                        onError={handleImageError}
+                      />
+                    </div>
+                    <div className={styles.productInfo}>
+                      <h3>{product.productName}</h3>
+                      <div className={styles.categories}>
+                        {product.category && <span>{product.category}</span>}
+                        {product.subcategory && <span>{product.subcategory}</span>}
+                      </div>
+                      {product.brand && (
+                        <div className={styles.brand}>{product.brand}</div>
+                      )}
+                      <p className={styles.description}>
+                        {product.shortDescription || ''}
+                      </p>
+                      <p className={styles.price}>
+                        {typeof product.price === 'number' && !isNaN(product.price) 
+                          ? `₪${product.price.toLocaleString('he-IL', {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2
+                            })}`
+                          : 'מחיר לא זמין'
+                        }
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </>
             )}
           </div>
         )}
