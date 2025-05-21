@@ -23,8 +23,17 @@ const ProductPage = () => {
     const loadProductImages = async () => {
       if (!sku) return;
 
-      // קובע את התמונה הראשית
       setImageSrc(`/images/${sku}.jpg`);
+
+      try {
+        const response = await fetch(`/images/${sku}.jpg`);
+        if (!response.ok) {
+          setImageSrc(`/images/${sku}.png`);
+        }
+      } catch (error) {
+        console.error('Error loading main image:', error);
+        setImageSrc('/images/default.jpg');
+      }
 
       // בודק תמונות ממוזערות - רק אם קיימות
       const validThumbnails = [];
@@ -63,7 +72,6 @@ const ProductPage = () => {
         setLoading(true);
         setError(null);
 
-        // שליפת המוצר הספציפי
         const productRes = await axios.get(`${SERVER_URL}/products`, {
           params: { sku: Number(sku) }
         });
@@ -72,7 +80,6 @@ const ProductPage = () => {
           throw new Error("מוצר לא נמצא");
         }
 
-        // אם מקבלים מערך, ניקח את המוצר הראשון שמתאים ל-SKU
         const productData = Array.isArray(productRes.data.products) 
           ? productRes.data.products.find(p => p.sku === Number(sku))
           : productRes.data;
@@ -82,11 +89,8 @@ const ProductPage = () => {
         }
 
         setProduct(productData);
-        
-        // טעינת תמונות רק אחרי שיש לנו את נתוני המוצר
         await loadProductImages();
 
-        // שליפת כל המוצרים לצורך ה-SearchStrip
         try {
           const allProductsRes = await axios.get(`${SERVER_URL}/products`);
           const allProductsData = Array.isArray(allProductsRes.data) ? allProductsRes.data : allProductsRes.data.products || [];
@@ -115,7 +119,7 @@ const ProductPage = () => {
     if (currentSrc.endsWith('.jpg')) {
       e.target.src = currentSrc.replace('.jpg', '.png');
     } else if (currentSrc.endsWith('.png')) {
-      e.target.src = `${SERVER_URL}/images/default.jpg`;
+      e.target.src = '/images/default.jpg';
     }
   };
 
@@ -184,13 +188,7 @@ const ProductPage = () => {
   return (
     <main className={styles.pageWrapper}>
       <div className={styles.searchStripWrapper}>
-        <SearchStrip
-          categories={allProducts.map(p => ({
-            category: p.category,
-            subcategory: p.subcategory,
-            subsubcategory: p.subsubcategory
-          }))}
-        />
+        <SearchStrip categories={allProducts} />
       </div>
 
       <div className={styles.topSection}>

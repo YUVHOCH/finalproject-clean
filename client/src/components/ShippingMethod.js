@@ -42,7 +42,7 @@ const ShippingMethod = ({ selected, onSelect, cartItems }) => {
               className={selected === "pickup_point" ? styles.active : ""}
               onClick={() => onSelect("pickup_point")}
             >
-              נקודות איסוף
+               נקודות איסוף/לוקרים
             </button>
           </>
         )}
@@ -50,7 +50,7 @@ const ShippingMethod = ({ selected, onSelect, cartItems }) => {
           className={selected === "self" ? styles.active : ""}
           onClick={() => onSelect("self")}
         >
-          איסוף עצמי
+          איסוף מהסניפים
         </button>
       </div>
 

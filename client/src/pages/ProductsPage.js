@@ -58,15 +58,16 @@ const ProductsPage = () => {
           return;
         }
 
-        // הוסף:
-        setCategoryDescription(category.description || "");
-
         // טען את המוצרים של הקטגוריה
         const response = await axios.get(`http://localhost:8000/products/by-category/${category.categoryId}`);
         
         if (response.data.products) {
           const validProducts = response.data.products.filter(product => product.categoryId === category.categoryId);
           setProducts(validProducts);
+          // עדכן את תיאור הקטגוריה מהתשובה אם קיים
+          if (response.data.category && response.data.category.description) {
+            setCategoryDescription(response.data.category.description);
+          }
         } else {
           setProducts([]);
         }

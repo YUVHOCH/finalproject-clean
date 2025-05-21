@@ -1,5 +1,5 @@
 // ✅ src/components/ProductCard.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/ProductCard.module.css";
 import reviewImage from "../assets/reviews.jpg";
@@ -27,6 +27,34 @@ const ProductCard = ({
   const navigate = useNavigate();
   const [imageSrc, setImageSrc] = useState(`/images/${sku}.jpg`);
   const [logoSrc, setLogoSrc] = useState(`/brands/${brandLogo?.trim() || "placeholder.jpg"}`);
+  const [availableThumbnails, setAvailableThumbnails] = useState([]);
+
+  useEffect(() => {
+    // בדיקת קיום תמונות ממוזערות
+    const checkThumbnail = async (index) => {
+      try {
+        const response = await fetch(`/images/${sku}_${index}.jpg`);
+        if (response.ok) {
+          return `/images/${sku}_${index}.jpg`;
+        }
+        const pngResponse = await fetch(`/images/${sku}_${index}.png`);
+        if (pngResponse.ok) {
+          return `/images/${sku}_${index}.png`;
+        }
+        return null;
+      } catch {
+        return null;
+      }
+    };
+
+    const loadThumbnails = async () => {
+      const thumbnailPromises = [1, 2, 3].map(index => checkThumbnail(index));
+      const results = await Promise.all(thumbnailPromises);
+      setAvailableThumbnails(results.filter(thumb => thumb !== null));
+    };
+
+    loadThumbnails();
+  }, [sku]);
 
   const handleImageError = () => {
     if (imageSrc.endsWith(".jpg")) {
@@ -43,11 +71,6 @@ const ProductCard = ({
       setLogoSrc("/brands/placeholder.jpg");
     }
   };
-
-  const thumbnails = [1, 2, 3].map((i) => ({
-    jpg: `/images/${sku}_${i}.jpg`,
-    png: `/images/${sku}_${i}.png`
-  }));
 
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
@@ -98,25 +121,19 @@ const ProductCard = ({
           />
         </div>
 
-        {/* 🔍 תמונות נוספות – thumbnail */}
-        <div className={styles.thumbnailList}>
-          {thumbnails.map((thumb, idx) => (
-            <img
-              key={idx}
-              src={thumb.jpg}
-              alt={`thumb ${idx + 1}`}
-              className={styles.thumbnail}
-              onClick={() => setImageSrc(thumb.jpg)}
-              onError={(e) => {
-                if (e.target.src.endsWith(".jpg")) {
-                  e.target.src = thumb.png;
-                } else {
-                  e.target.style.display = "none";
-                }
-              }}
-            />
-          ))}
-        </div>
+        {availableThumbnails.length > 0 && (
+          <div className={styles.thumbnailList}>
+            {availableThumbnails.map((thumb, idx) => (
+              <img
+                key={idx}
+                src={thumb}
+                alt={`תמונה ${idx + 1}`}
+                className={styles.thumbnail}
+                onClick={() => setImageSrc(thumb)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* ℹ️ תוכן משמאל */}
