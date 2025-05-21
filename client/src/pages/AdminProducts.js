@@ -201,48 +201,36 @@ const AdminProducts = () => {
 
   const handleFieldChange = async (sku, field, value) => {
     try {
-      // מטפל במקרה מיוחד של עדכון מיקום
-      if (field === 'position') {
-        const newPosition = value ? parseInt(value) : null;
-        
-        // מצא את המוצר הנוכחי
-        const currentProduct = products.find(p => p.sku === sku);
-        const categoryId = currentProduct?.categoryId;
+      // עדכון אופטימי של ה-UI
+      setProducts(prevProducts => 
+        prevProducts.map(p => p.sku === sku ? { ...p, [field]: value } : p)
+      );
 
-        // עדכן את המיקום
+      if (field === 'position') {
+        const currentProduct = products.find(p => p.sku === sku);
+        
         const res = await fetch(`http://localhost:8000/products/${sku}/position`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ 
-            position: newPosition,
-            categoryId: categoryId 
+            position: value,
+            categoryId: currentProduct?.categoryId 
           }),
         });
 
-        if (!res.ok) throw new Error("Failed to update position");
-        
+        if (!res.ok) {
+          throw new Error(`Failed to update position: ${res.status}`);
+        }
+
         const { products: updatedProducts } = await res.json();
-        
-        // עדכן רק את המוצרים מאותה קטגוריה
         setProducts(prevProducts => {
-          const productsInOtherCategories = prevProducts.filter(p => p.categoryId !== categoryId);
-          const updatedProductsInCategory = updatedProducts.filter(p => p.categoryId === categoryId);
-          return [...productsInOtherCategories, ...updatedProductsInCategory]
-            .sort((a, b) => {
-              if (a.categoryId === b.categoryId) {
-                // אם באותה קטגוריה, מיין לפי position
-                if (a.position === null) return 1;
-                if (b.position === null) return -1;
-                return a.position - b.position;
-              }
-              // אחרת, שמור על הסדר הקיים של הקטגוריות
-              return 0;
-            });
+          const productsInOtherCategories = prevProducts.filter(p => p.categoryId !== currentProduct?.categoryId);
+          const updatedProductsInCategory = updatedProducts.filter(p => p.categoryId === currentProduct?.categoryId);
+          return [...productsInOtherCategories, ...updatedProductsInCategory];
         });
       } else {
-        // טיפול בשאר השדות
         const res = await fetch(`http://localhost:8000/products/${sku}`, {
           method: "PATCH",
           headers: {
@@ -251,16 +239,17 @@ const AdminProducts = () => {
           body: JSON.stringify({ [field]: value }),
         });
         
-        if (!res.ok) throw new Error("Failed to update field");
-        
-        const data = await res.json();
-        setProducts(prevProducts => 
-          prevProducts.map(p => p.sku === sku ? { ...p, [field]: value } : p)
-        );
+        if (!res.ok) {
+          throw new Error(`Failed to update field: ${res.status}`);
+        }
       }
     } catch (err) {
       console.error("❌ Failed to update field:", err);
-      alert("❌ Could not update field");
+      // החזרת המצב הקודם במקרה של שגיאה
+      setProducts(prevProducts => 
+        prevProducts.map(p => p.sku === sku ? { ...p, [field]: products.find(op => op.sku === sku)[field] } : p)
+      );
+      alert("לא ניתן היה לעדכן את השדה. אנא נסה שנית.");
     }
   };
 
@@ -449,32 +438,78 @@ const AdminProducts = () => {
               <td className="border px-2 py-1">{prod.categoryName || '-'}</td>
               <td className="border px-2 py-1">
                 <input
-                  type="number"
+                  type="text"
                   value={prod.position ?? ''}
-                  onChange={(e) => handleFieldChange(prod.sku, "position", e.target.value ? parseInt(e.target.value) : null)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Backspace' && (prod.position === null || prod.position === '')) {
+                      e.preventDefault();
+                      handleFieldChange(prod.sku, "position", null);
+                    }
+                  }}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (newValue === '') {
+                      handleFieldChange(prod.sku, "position", null);
+                    }
+                    else if (/^\d+$/.test(newValue)) {
+                      handleFieldChange(prod.sku, "position", parseInt(newValue));
+                    }
+                  }}
                   className={`${styles.editableField} ${styles.positionField}`}
+                  placeholder="-"
                 />
               </td>
               <td className="border px-2 py-1">
                 <input
-                  type="number"
-                  value={Number(prod.price || 0).toFixed(2)}
-                  onChange={(e) => handleFieldChange(prod.sku, "price", parseFloat(e.target.value))}
+                  type="text"
+                  value={prod.price ?? ''}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    
+                    // בדיקה שהקלט תקין (מספרים ונקודה בלבד)
+                    if (newValue === '' || /^\d*\.?\d{0,2}$/.test(newValue)) {
+                      // אם יש נקודה, מוודאים שיש מקסימום 2 ספרות אחריה
+                      if (newValue.includes('.')) {
+                        const [whole, decimal] = newValue.split('.');
+                        if (decimal && decimal.length <= 2) {
+                          handleFieldChange(prod.sku, "price", newValue === '' ? null : parseFloat(newValue));
+                        }
+                      } else {
+                        handleFieldChange(prod.sku, "price", newValue === '' ? null : parseFloat(newValue));
+                      }
+                    }
+                  }}
                   className={`${styles.editableField} ${styles.priceField}`}
-                  step="0.01"
                 />
               </td>
               <td className="border px-2 py-1">
                 <input
-                  type="number"
-                  value={Number(prod.priceInstead || 0).toFixed(2)}
-                  onChange={(e) => handleFieldChange(prod.sku, "priceInstead", parseFloat(e.target.value))}
+                  type="text"
+                  value={prod.priceInstead ?? ''}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    
+                    // בדיקה שהקלט תקין (מספרים ונקודה בלבד)
+                    if (newValue === '' || /^\d*\.?\d{0,2}$/.test(newValue)) {
+                      // אם יש נקודה, מוודאים שיש מקסימום 2 ספרות אחריה
+                      if (newValue.includes('.')) {
+                        const [whole, decimal] = newValue.split('.');
+                        if (decimal && decimal.length <= 2) {
+                          handleFieldChange(prod.sku, "priceInstead", newValue === '' ? null : parseFloat(newValue));
+                        }
+                      } else {
+                        handleFieldChange(prod.sku, "priceInstead", newValue === '' ? null : parseFloat(newValue));
+                      }
+                    }
+                  }}
                   className={`${styles.editableField} ${styles.priceField}`}
-                  step="0.01"
                 />
               </td>
               <td className="border px-2 py-1">
-                {((prod.priceInstead || 0) - (prod.price || 0)).toFixed(2)}
+                {prod.priceInstead && prod.price ? 
+                  (prod.priceInstead - prod.price).toFixed(2) 
+                  : ''
+                }
               </td>
               <td className="border px-2 py-1">
                 <img 
