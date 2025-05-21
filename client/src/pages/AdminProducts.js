@@ -462,13 +462,16 @@ const AdminProducts = () => {
               <td className="border px-2 py-1">
                 <input
                   type="text"
-                  value={prod.price ?? ''}
+                  value={prod.price ? 
+                    // אם יש נקודה עשרונית והערך מכיל יותר מ-2 ספרות אחריה
+                    String(prod.price).includes('.') && String(prod.price).split('.')[1].length > 2 
+                      ? Number(prod.price).toFixed(2) 
+                      : prod.price
+                    : ''
+                  }
                   onChange={(e) => {
                     const newValue = e.target.value;
-                    
-                    // בדיקה שהקלט תקין (מספרים ונקודה בלבד)
                     if (newValue === '' || /^\d*\.?\d{0,2}$/.test(newValue)) {
-                      // אם יש נקודה, מוודאים שיש מקסימום 2 ספרות אחריה
                       if (newValue.includes('.')) {
                         const [whole, decimal] = newValue.split('.');
                         if (decimal && decimal.length <= 2) {
@@ -485,13 +488,16 @@ const AdminProducts = () => {
               <td className="border px-2 py-1">
                 <input
                   type="text"
-                  value={prod.priceInstead ?? ''}
+                  value={prod.priceInstead ? 
+                    // אם יש נקודה עשרונית והערך מכיל יותר מ-2 ספרות אחריה
+                    String(prod.priceInstead).includes('.') && String(prod.priceInstead).split('.')[1].length > 2 
+                      ? Number(prod.priceInstead).toFixed(2) 
+                      : prod.priceInstead
+                    : ''
+                  }
                   onChange={(e) => {
                     const newValue = e.target.value;
-                    
-                    // בדיקה שהקלט תקין (מספרים ונקודה בלבד)
                     if (newValue === '' || /^\d*\.?\d{0,2}$/.test(newValue)) {
-                      // אם יש נקודה, מוודאים שיש מקסימום 2 ספרות אחריה
                       if (newValue.includes('.')) {
                         const [whole, decimal] = newValue.split('.');
                         if (decimal && decimal.length <= 2) {
