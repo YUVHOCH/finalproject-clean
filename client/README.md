@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# Final Project - Full Stack E-commerce & AI Semantic Search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a full-stack application developed as a final project.  
+It combines a modern React-based frontend, a Node.js + Express backend, and advanced AI-based semantic search functionality using OpenAI embeddings.
 
-## Available Scripts
+The project structure:
 
-In the project directory, you can run:
+- **Frontend:** React app (`/client`)
+- **Backend:** Node.js + Express API (`/server`)
+- **AI Search Utilities:** Embedding generation scripts (`generateEmbeddings.js`, CSV files)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Modern B2C/B2B E-commerce site with React frontend
+- Node.js backend with MongoDB database
+- AI-based semantic search using OpenAI embeddings
+- JWT-based authentication
+- Dynamic product catalog with categories, filtering, and search
+- Admin tools for product and user management
+- Optimized for performance and responsive UX
+- Embedding scripts for generating and processing product embeddings
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation & Running the Project
 
-### `npm run build`
+### 1️⃣ Clone the repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/YUVOCH/finalproject-clean.git
+cd finalproject-clean
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2️⃣ Install root dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+### 3️⃣ Install client and server dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd client
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd ../server
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4️⃣ Environment Variables
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In the `/server` folder, create a `.env` file with the following variables:
 
-## Learn More
+```env
+MONGO_URI=your-mongodb-uri
+JWT_SECRET=your-jwt-secret
+OPENAI_API_KEY=your-openai-api-key
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5️⃣ Running the project
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run both server and client concurrently:
 
-### Code Splitting
+```bash
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Alternatively, you can run them separately:
 
-### Analyzing the Bundle Size
+**Client (React):**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run client
+```
 
-### Making a Progressive Web App
+**Server (Node.js + Express):**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm run server
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## AI Semantic Search Utilities
 
-### Deployment
+The project includes a script to generate AI embeddings for products:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `generateEmbeddings.js` — Generates product embeddings using OpenAI API.
+- `input_embeddings.csv` — Input CSV with product data.
+- `output_embeddings.csv` — Output CSV with generated embeddings.
 
-### `npm run build` fails to minify
+To run the embedding script:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+node generateEmbeddings.js
+```
+
+*Make sure your `OPENAI_API_KEY` is set in the `.env` file.*
+
+---
+
+## Client README
+
+For more details on working with the React client app, see: [client/README.md](client/README.md)
+
+---
+
+## Notes
+
+- `node_modules/` is excluded from version control (`.gitignore`).
+- `.env` file is required to run the server.
+- The project can be started with one command: `npm run dev`.
+
+---
+
+## License
+
+MIT
+
+---
+
+## About the Project
+
+This project was developed as part of my Full Stack Development course, combining my experience in E-commerce (B2C/B2B) with hands-on Full Stack development.  
+More improvements and features will be added in future versions.
+
+---
