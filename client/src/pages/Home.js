@@ -80,19 +80,17 @@ const Home = () => {
   const productsToShow = filteredProducts.slice(0, limit);
 
   return (
-    
     <div className={styles.pageWrapper}>
       <div className={styles.stickyHeader}>
         <header className={styles.siteHeader}> {/* לוגו / ניווט */} </header>
+        <SearchStrip categories={categories} />
       </div>
 
       <main className={styles.mainContent}>
-        <SearchStrip categories={categories} />
         <HeroBanner />
         <FeaturedCategories />
         <MiddleBanners />
         <HomeSaleProducts />
-
         <h2 className={styles.yoursProducts}> מוצרים שיעניינו אותך</h2>
 
         {/*<div className={styles.limitRow}>

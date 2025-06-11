@@ -56,11 +56,19 @@
   width: 50px;
   height: 50px;
   border-radius: 6px;
-  border: 1px solid #ccc;
   cursor: pointer;
   object-fit: contain;
   margin-top: 15px;
+  background-color: #f8f8f8;
+  transition: border 0.2s ease;
+}
 
+.thumbnail[src] {
+  border: 1px solid #ccc;
+}
+
+.thumbnail:hover {
+  border-color: #999;
 }
 
 .details {

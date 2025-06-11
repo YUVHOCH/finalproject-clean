@@ -118,6 +118,7 @@ const ProductCard = ({
             alt={productName}
             className={styles.mainImage}
             onError={handleImageError}
+            loading="lazy"
           />
         </div>
 
@@ -130,6 +131,7 @@ const ProductCard = ({
                 alt={`תמונה ${idx + 1}`}
                 className={styles.thumbnail}
                 onClick={() => setImageSrc(thumb)}
+                loading="lazy"
               />
             ))}
           </div>
